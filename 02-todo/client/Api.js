@@ -1,21 +1,21 @@
 class Api {
-  url = '';
+  url = "";
 
   constructor(url) {
     this.url = url;
   }
 
-  /* Create = POST */
+  /*Create = POST */
   create(data) {
     const JSONData = JSON.stringify(data);
-    console.log(`Sending ${JSONData} to ${this.url}`);
+    console.log(`Skickar ${JSONData} to this ${this.url}`);
 
     const request = new Request(this.url, {
-      method: 'POST',
+      method: "POST",
       body: JSONData,
       headers: {
-        'content-type': 'application/json'
-      }
+        "content-type": "application/json",
+      },
     });
 
     return fetch(request)
@@ -24,7 +24,7 @@ class Api {
       .catch((err) => console.log(err));
   }
 
-  /* Read = GET */
+  /*READ = GET */
   getAll() {
     return fetch(this.url)
       .then((result) => result.json())
@@ -32,13 +32,12 @@ class Api {
       .catch((err) => console.log(err));
   }
 
-  /* Delete = DELETE */
+  /*remove = DELETE */
   remove(id) {
     console.log(`Removing task with id ${id}`);
-    /*  Fixa i server/app.js --> res.header('Access-Control-Allow-Methods', '*');, starta om server */
 
     return fetch(`${this.url}/${id}`, {
-      method: 'DELETE'
+      method: "DELETE",
     })
       .then((result) => result)
       .catch((err) => console.log(err));

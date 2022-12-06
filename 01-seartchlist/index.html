@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="#" />
+    <title>GIK2F8 - Sökfunktion</title>
+  </head>
+  <body class="bg-teal-500 h-screen">
+    <h1 class="text-6xl text-teal-100 text-center mt-4 mb-7">Sök böcker</h1>
+    <main
+      id="root"
+      class="w-4/5 mx-auto bg-white/40 py-12 px-6 md:w-3/5 rounded-lg flex justify-center align-center flex-col"
+    >
+      <label class="text-black-50 text-xl block" for="searchField"
+        >Ange sökord:
+      </label>
+      <input class="rounded-lg p-2" type="text" id="searchField" />
+    </main>
+    <script src="api/api.js"></script>
+    <script src="Components/BookListItem.js"></script>
+    <script src="Components/BookList.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
