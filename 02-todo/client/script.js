@@ -6,6 +6,7 @@ todoForm.dueDate.addEventListener("input", (e) => validateField(e.target));
 todoForm.dueDate.addEventListener("blur", (e) => validateField(e.target));
 
 todoForm.addEventListener("submit", onSubmit);
+//todoForm.addEventListener("completed", completeTask);
 
 const todoListElement = document.getElementById("todoList");
 let titleValid = true;
@@ -94,8 +95,12 @@ function renderList() {
 
 function renderTask({ id, title, description, dueDate, completed }) {
   let html = `
-    <li class="select-none mt-2 py-2 border-b border-amber-300">
+    <li class="select-none mt-2 py-2 border-b border-amber-300 ${completed}">
         <div class="flex items-center">
+        <form>
+          <input onclick="completeTask(${id})" type="checkbox" id="completed" name="completed" value="completed" ">
+          <label for="completed"></label>
+          </form>
             <h3 class="mb-3 flex-1 text-xl font-bold text-pink-800 uppercase">${title}</h3>
             <div>
                 <span>${dueDate}</span>
@@ -107,6 +112,24 @@ function renderTask({ id, title, description, dueDate, completed }) {
     (html += `<p class="ml-8 mt-2 text-xs italic">${description}</p>`);
   html += `</li>`;
   return html;
+}
+
+function completeTask(id) {
+  // api.update(id);
+  // renderList();
+
+  api.update(id).then((result) => {
+    renderList();
+  });
+
+  // api.create;
+  // api.remove(id).then((result) => {
+  //   console.log(result);
+  // api.update(id).then((result) => {
+  //   console.log(result);
+  //   renderList();
+  /* LÄGGA TILL I donetasks.json */
+  //});
 }
 
 function deleteTask(id) {
