@@ -73,4 +73,29 @@ app.delete("/tasks/:id", async (req, res) => {
   }
 });
 
+app.put("/tasks/:id", async (req, res) => {
+  const listBuffer = await fs.readFile("./tasks.json");
+  const currentTasks = JSON.parse(listBuffer);
+  const myId = Number(req.params.id);
+  const body = req.body;
+  //console.log(body);
+  const task = currentTasks.find((task) => task.id === myId);
+  const index = currentTasks.indexOf(task);
+  //console.log(index);
+
+  if (!task) {
+    res.status(500).send("Acc not found");
+  } else {
+    task.completed = true;
+    const updatedTask = { ...task, ...body };
+    //console.log({ ...task, ...body });
+    //console.log(task);
+    currentTasks[index] = updatedTask;
+    await fs.writeFile("./tasks.json", JSON.stringify(currentTasks));
+    res.send(updatedTask);
+    //await fs.writeFile(".tasks.json", updatedTask);
+    //res.send(updatedTask);
+  }
+});
+
 app.listen(PORT, () => console.log("Server running on http://localhost:5000"));
