@@ -85,6 +85,16 @@ function saveTask() {
 function renderList() {
   api.getAll().then((tasks) => {
     todoListElement.innerHTML = "";
+    console.log(tasks);
+    customSort = (a, b) => {
+      const dateA = a.dueDate;
+      const dateB = b.dueDate;
+      if (dateA < dateB) return -1;
+      else if (dateA > dateB) return 1;
+      return 0;
+    };
+
+    console.log("sorted", tasks.sort(customSort));
     if (tasks && tasks.length > 0) {
       tasks.forEach((task) => {
         todoListElement.insertAdjacentHTML("beforeend", renderTask(task));
@@ -114,13 +124,20 @@ function renderTask({ id, title, description, dueDate, completed }) {
   return html;
 }
 
-function completeTask(id) {
-  // api.update(id);
-  // renderList();
-
-  api.update(id).then((result) => {
-    renderList();
+function delay(milliseconds) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, milliseconds);
   });
+}
+
+async function completeTask(id) {
+  api.update(id);
+  await delay(1);
+  renderList();
+
+  // api.update(id).then((result) => {
+  //   renderList();
+  // });
 
   // api.create;
   // api.remove(id).then((result) => {

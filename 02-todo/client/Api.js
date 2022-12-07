@@ -39,7 +39,7 @@ class Api {
             task.completed = false;
           }
           const JSONData = JSON.stringify(task);
-          console.log(`Uppdaterar ${JSONData} to this ${this.url}/${id}`);
+          //console.log(`Uppdaterar ${JSONData} to this ${this.url}/${id}`);
           const putMethod = {
             method: "PUT", // Method itself
             headers: {
@@ -47,10 +47,12 @@ class Api {
             },
             body: JSONData, // We send data in JSON format
           };
-          return fetch(`${this.url}/${id}`, putMethod)
-            .then((response) => response.json())
-            .then((data) => console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
-            .catch((err) => console.log(err)); // Do something with the error
+          return (
+            fetch(`${this.url}/${id}`, putMethod)
+              .then((response) => response.json())
+              //.then((data) => console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
+              .catch((err) => console.log(err))
+          ); // Do something with the error
 
           //console.log(`Uppdaterar ${JSONData} to this ${this.url}/${id}`);
           //console.log(`Updating task with id ${id}`);
