@@ -132,7 +132,7 @@ function delay(milliseconds) {
 
 async function completeTask(id) {
   api.update(id);
-  await delay(1);
+  await delay(10);
   renderList();
 
   // api.update(id).then((result) => {
