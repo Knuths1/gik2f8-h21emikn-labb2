@@ -19,7 +19,6 @@ app
   });
 
 app.get("/tasks", async (req, res) => {
-  //res.status(418).send("GET-Annrop")
   try {
     const tasks = await fs.readFile("./tasks.json");
     res.send(JSON.parse(tasks));
@@ -34,7 +33,6 @@ app.post("/tasks", async (req, res) => {
 
     const listBuffer = await fs.readFile("./tasks.json");
     const currentTasks = JSON.parse(listBuffer);
-    //console.log(currentTasks);
     let maxTaskId = 1;
     if (currentTasks && currentTasks.length > 0) {
       maxTaskId = currentTasks.reduce(
@@ -88,13 +86,9 @@ app.put("/tasks/:id", async (req, res) => {
   } else {
     task.completed = true;
     const updatedTask = { ...task, ...body };
-    //console.log({ ...task, ...body });
-    //console.log(task);
     currentTasks[index] = updatedTask;
     await fs.writeFile("./tasks.json", JSON.stringify(currentTasks));
     res.send(updatedTask);
-    //await fs.writeFile(".tasks.json", updatedTask);
-    //res.send(updatedTask);
   }
 });
 
