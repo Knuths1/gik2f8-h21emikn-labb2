@@ -1,1 +1,30 @@
-[{"id":2,"title":"Måla","description":"Sovrum","dueDate":"2023-01-11","completed":false},{"id":3,"title":"Kratta","description":"Gården","dueDate":"2022-12-20","completed":false},{"id":4,"title":"Plugga","description":"Inför dugga","dueDate":"2023-01-13","completed":false},{"id":5,"title":"Laga bilen","description":"","dueDate":"2023-02-28","completed":false}]
+[
+  {
+    "id": 2,
+    "title": "Måla",
+    "description": "Sovrum",
+    "dueDate": "2023-01-11",
+    "completed": false
+  },
+  {
+    "id": 3,
+    "title": "Kratta",
+    "description": "Gården",
+    "dueDate": "2022-12-20",
+    "completed": true
+  },
+  {
+    "id": 5,
+    "title": "Laga bilen",
+    "description": "",
+    "dueDate": "2023-02-28",
+    "completed": false
+  },
+  {
+    "id": 6,
+    "title": "Göra klart labben",
+    "description": "och lämna in den",
+    "dueDate": "2022-12-25",
+    "completed": false
+  }
+]
